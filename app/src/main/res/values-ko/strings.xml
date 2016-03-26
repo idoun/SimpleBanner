@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">심플 배너 위젯</string>
     <string name="tap_to_change">텍스트를 바꾸시려면 누르세요</string>
+    <string name="label_input_text">위젯에 보일 텍스트를 입력하세요.</string>
+    <string name="save">저장</string>
+    <string name="cancel">취소</string>
 </resources>
