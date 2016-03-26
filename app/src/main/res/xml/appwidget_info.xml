@@ -4,6 +4,7 @@
     android:minHeight="40dp"
     android:minResizeWidth="110dp"
     android:updatePeriodMillis="0"
+    android:previewImage="@drawable/initial"
     android:initialLayout="@layout/banner_appwidget"
     android:resizeMode="horizontal|vertical">
 </appwidget-provider>
