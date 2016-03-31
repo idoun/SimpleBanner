@@ -31,13 +31,18 @@ public class SimpleBannerAppWidgetProvider extends AppWidgetProvider {
 
         for (int appWidgetId : appWidgetIds) {
             Intent intent = new Intent(context, EditActivity.class);
-            PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
+            intent.putExtra(EditActivity.EXTRA_WIDGET_ID, appWidgetId);
+
+            PendingIntent pendingIntent = PendingIntent.getActivity(context, appWidgetId, intent,
+                    PendingIntent.FLAG_UPDATE_CURRENT);
 
             RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.banner_appwidget);
             views.setOnClickPendingIntent(R.id.background, pendingIntent);
 
-            if (prefs.contains(EditActivity.PREF_USER_TEXT)) {
-                String text = prefs.getString(EditActivity.PREF_USER_TEXT, "");
+            String widgetKey = EditActivity.PREF_USER_TEXT + appWidgetId;
+
+            if (prefs.contains(widgetKey)) {
+                String text = prefs.getString(widgetKey, "");
 
                 if (!text.isEmpty()) {
                     views.setTextViewText(R.id.text, text);
@@ -46,5 +51,22 @@ public class SimpleBannerAppWidgetProvider extends AppWidgetProvider {
 
             appWidgetManager.updateAppWidget(appWidgetId, views);
         }
+    }
+
+    @Override
+    public void onDeleted(Context context, int[] appWidgetIds) {
+        super.onDeleted(context, appWidgetIds);
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = prefs.edit();
+
+        for (int appWidgetId : appWidgetIds) {
+            String widgetKey = EditActivity.PREF_USER_TEXT + appWidgetId;
+
+            if (prefs.contains(widgetKey)) {
+                editor.remove(widgetKey);
+            }
+        }
+
+        editor.apply();
     }
 }

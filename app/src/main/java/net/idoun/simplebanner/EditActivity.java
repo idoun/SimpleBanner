@@ -12,10 +12,12 @@ import android.widget.Button;
 import android.widget.EditText;
 
 public class EditActivity extends AppCompatActivity {
-
-    public static final String PREF_USER_TEXT = "USER_TEXT";
     private static final String TAG = "EditActivity";
+
     public static final String ACTION_APPWIDGET_UPDATE = "net.idoun.intent.action.APPWIDGET_UPDATE";
+    public static final String EXTRA_WIDGET_ID = "WIDGET_ID";
+
+    public static final String PREF_USER_TEXT = "USER_TEXT_";
 
     private EditText inputEditText;
 
@@ -29,6 +31,17 @@ public class EditActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit);
 
         inputEditText = (EditText)findViewById(R.id.edit_input);
+
+        int appWidgetId = getIntent().getIntExtra(EXTRA_WIDGET_ID, -1);
+        final String widgetKey = EditActivity.PREF_USER_TEXT + appWidgetId;
+
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        if (prefs.contains(widgetKey)) {
+            text = prefs.getString(widgetKey, "");
+
+            inputEditText.setText(text);
+        }
+
         Button cancelButton = (Button)findViewById(R.id.cancel_button);
         Button saveButton = (Button)findViewById(R.id.save_button);
 
@@ -45,19 +58,12 @@ public class EditActivity extends AppCompatActivity {
                 String currentText = inputEditText.getText().toString();
                 Log.d(TAG, "onClick: " + currentText);
                 if (!currentText.isEmpty() && !text.equals(currentText)) {
-                    prefs.edit().putString(PREF_USER_TEXT, currentText).apply();
+                    prefs.edit().putString(widgetKey, currentText).apply();
                     updateMyWidgets(EditActivity.this);
                     finish();
                 }
             }
         });
-
-        prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        if (prefs.contains(PREF_USER_TEXT)) {
-            text = prefs.getString(PREF_USER_TEXT, "");
-
-            inputEditText.setText(text);
-        }
     }
 
     private void updateMyWidgets(Context context) {
