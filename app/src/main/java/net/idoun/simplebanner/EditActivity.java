@@ -40,6 +40,7 @@ public class EditActivity extends AppCompatActivity {
             text = prefs.getString(widgetKey, "");
 
             inputEditText.setText(text);
+            inputEditText.setSelection(text.length());
         }
 
         Button cancelButton = (Button)findViewById(R.id.cancel_button);
