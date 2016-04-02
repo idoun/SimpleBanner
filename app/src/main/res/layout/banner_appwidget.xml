@@ -11,6 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
         android:gravity="center"
         android:text="@string/tap_to_change"
         android:textAlignment="center"
