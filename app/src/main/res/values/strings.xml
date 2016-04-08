@@ -4,4 +4,6 @@
     <string name="label_input_text">Input your text.</string>
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
+    <string name="label_font_size">Set font size.</string>
+    <string name="toast_font_size_min">Size is too small.</string>
 </resources>

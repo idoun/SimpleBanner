@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.util.TypedValue;
 import android.widget.RemoteViews;
 
 public class SimpleBannerAppWidgetProvider extends AppWidgetProvider {
@@ -47,6 +48,13 @@ public class SimpleBannerAppWidgetProvider extends AppWidgetProvider {
                 if (!text.isEmpty()) {
                     views.setTextViewText(R.id.text, text);
                 }
+            }
+
+            String fontSizeKey = EditActivity.PREF_USER_TEXT_SIZE + appWidgetId;
+            if (prefs.contains(fontSizeKey)) {
+                int textSize = prefs.getInt(fontSizeKey, EditActivity.DEFAULT_FONT_SIZE);
+
+                views.setTextViewTextSize(R.id.text, TypedValue.COMPLEX_UNIT_SP, textSize);
             }
 
             appWidgetManager.updateAppWidget(appWidgetId, views);

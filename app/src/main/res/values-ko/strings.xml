@@ -5,4 +5,6 @@
     <string name="label_input_text">위젯에 보일 텍스트를 입력하세요.</string>
     <string name="save">저장</string>
     <string name="cancel">취소</string>
+    <string name="label_font_size">글꼴 크기를 조정하세요.</string>
+    <string name="toast_font_size_min">크기가 작습니다.</string>
 </resources>
