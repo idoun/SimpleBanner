@@ -86,6 +86,7 @@ public class EditActivity extends AppCompatActivity {
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(EditActivity.this, R.string.toast_not_saved, Toast.LENGTH_SHORT).show();
                 finish();
             }
         });
@@ -109,9 +110,13 @@ public class EditActivity extends AppCompatActivity {
                     modified = true;
                 }
 
+                Context context = EditActivity.this;
                 if (modified) {
                     editor.apply();
-                    updateMyWidgets(EditActivity.this);
+                    updateMyWidgets(context);
+                    Toast.makeText(context, R.string.toast_saved, Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(context, R.string.toast_not_saved, Toast.LENGTH_SHORT).show();
                 }
 
                 finish();

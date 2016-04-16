@@ -7,4 +7,6 @@
     <string name="cancel">취소</string>
     <string name="label_font_size">글꼴 크기를 조정하세요.</string>
     <string name="toast_font_size_min">크기가 작습니다.</string>
+    <string name="toast_saved">저장되었습니다.</string>
+    <string name="toast_not_saved">수정 사항이 없었습니다.</string>
 </resources>
