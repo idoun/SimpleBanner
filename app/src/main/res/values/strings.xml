@@ -8,4 +8,5 @@
     <string name="toast_font_size_min">Size is too small.</string>
     <string name="toast_saved">Saved.</string>
     <string name="toast_not_saved">Nothing to save.</string>
+    <string name="label_preview">Preview</string>
 </resources>

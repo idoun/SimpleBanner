@@ -19,10 +19,13 @@ package net.idoun.simplebanner;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -49,6 +52,7 @@ public class EditActivity extends AppCompatActivity {
     public static final int MIN_FONT_SIZE = 10;
     public static final int TOAST_DISPLAY_DELAY = 1500; // millis
 
+    private TextView previewTextView;
     private EditText inputEditText;
     private SeekBar textSizeSeekBar;
     private TextView textSizeTextView;
@@ -71,6 +75,7 @@ public class EditActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
 
+        previewTextView = (TextView)findViewById(R.id.preview_text);
         inputEditText = (EditText)findViewById(R.id.edit_input);
         textSizeSeekBar = (SeekBar)findViewById(R.id.text_size_bar);
         textSizeTextView = (TextView)findViewById(R.id.display_text_size);
@@ -85,7 +90,23 @@ public class EditActivity extends AppCompatActivity {
 
             inputEditText.setText(widgetText);
             inputEditText.setSelection(widgetText.length());
+
+            previewTextView.setText(widgetText);
         }
+        inputEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                previewTextView.setText(inputEditText.getText());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
 
         initBottomButtonArea();
 
@@ -151,6 +172,7 @@ public class EditActivity extends AppCompatActivity {
 
         textSizeSeekBar.setProgress(fontSize);
         textSizeTextView.setText(String.format(Locale.getDefault(), "%d", fontSize));
+        previewTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, fontSize);
 
         textSizeSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -164,9 +186,11 @@ public class EditActivity extends AppCompatActivity {
 
                     textSizeSeekBar.setProgress(MIN_FONT_SIZE);
                     textSizeTextView.setText(String.format(Locale.getDefault(), "%d", MIN_FONT_SIZE));
+                    previewTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, MIN_FONT_SIZE);
                     return;
                 }
                 textSizeTextView.setText(String.format(Locale.getDefault(), "%d", progress));
+                previewTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, progress);
             }
 
             @Override
