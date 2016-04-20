@@ -100,7 +100,7 @@ public class EditActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                previewTextView.setText(inputEditText.getText());
+                previewTextView.setText(inputEditText.getText().toString());
             }
 
             @Override
