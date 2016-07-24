@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">シンプル バナー</string>
+    <string name="tap_to_change">内容を変更するには、タッチしてください</string>
+    <string name="label_input_text">文章を入力してください。</string>
+    <string name="save">保存</string>
+    <string name="cancel">キャンセル</string>
+    <string name="label_font_size">フォントサイズを設定します。</string>
+    <string name="toast_font_size_min">サイズが小さすぎます。</string>
+    <string name="toast_saved">それが保存されました。</string>
+    <string name="toast_not_saved">何も保存しませんします。</string>
+    <string name="label_preview">プレビュー</string>
+</resources>
