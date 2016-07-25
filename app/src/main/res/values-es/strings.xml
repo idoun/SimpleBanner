@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Banner simple</string>
+    <string name="tap_to_change">Toque aquí para cambiar el texto</string>
+    <string name="label_input_text">Introducir el texto.</string>
+    <string name="save">Salvar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="label_font_size">Establecer tamaño de fuente.</string>
+    <string name="toast_font_size_min">El tamaño es demasiado pequeño.</string>
+    <string name="toast_saved"> Salvado.</string>
+    <string name="toast_not_saved">No hay nada que salvar.</string>
+    <string name="label_preview">Preestreno</string>
+</resources>

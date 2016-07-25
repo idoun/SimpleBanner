@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Bannière simple</string>
+    <string name="cancel">Annuler</string>
+    <string name="label_font_size">Régler la taille de police.</string>
+    <string name="label_input_text">Saisissez votre texte.</string>
+    <string name="label_preview">Aperçu</string>
+    <string name="save">Enregistrer</string>
+    <string name="tap_to_change">Appuyez ici pour changer le texte</string>
+    <string name="toast_font_size_min">La taille est trop petite.</string>
+    <string name="toast_not_saved">Rien à sauver.</string>
+    <string name="toast_saved">Enregistré.</string>
+</resources>
