@@ -21,7 +21,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -34,6 +33,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Locale;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * User can change the options of each banner widget in this Activity. Entering point is the widget
@@ -75,10 +76,10 @@ public class EditActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
 
-        previewTextView = (TextView)findViewById(R.id.preview_text);
-        inputEditText = (EditText)findViewById(R.id.edit_input);
-        textSizeSeekBar = (SeekBar)findViewById(R.id.text_size_bar);
-        textSizeTextView = (TextView)findViewById(R.id.display_text_size);
+        previewTextView = findViewById(R.id.preview_text);
+        inputEditText = findViewById(R.id.edit_input);
+        textSizeSeekBar = findViewById(R.id.text_size_bar);
+        textSizeTextView = findViewById(R.id.display_text_size);
 
         int appWidgetId = getIntent().getIntExtra(EXTRA_WIDGET_ID, -1);
         widgetKey = PREF_USER_TEXT + appWidgetId;
@@ -117,8 +118,8 @@ public class EditActivity extends AppCompatActivity {
      * Initiate the bottom area that has cancel and save buttons.
      */
     private void initBottomButtonArea() {
-        Button cancelButton = (Button)findViewById(R.id.cancel_button);
-        Button saveButton = (Button)findViewById(R.id.save_button);
+        Button cancelButton = findViewById(R.id.cancel_button);
+        Button saveButton = findViewById(R.id.save_button);
 
         if (cancelButton != null) {
             cancelButton.setOnClickListener(new View.OnClickListener() {
