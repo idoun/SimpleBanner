@@ -216,7 +216,7 @@ public class EditActivity extends AppCompatActivity {
      * @param context Context to send an intent.
      */
     private void updateMyWidgets(Context context) {
-        Intent updateIntent = new Intent();
+        Intent updateIntent = new Intent(this, SimpleBannerAppWidgetProvider.class);
         updateIntent.setAction(ACTION_APPWIDGET_UPDATE);
         context.sendBroadcast(updateIntent);
     }
