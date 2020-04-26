@@ -15,5 +15,6 @@
         android:gravity="center"
         android:text="@string/tap_to_change"
         android:textAlignment="center"
+        android:textColor="@android:color/white"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 </RelativeLayout>
