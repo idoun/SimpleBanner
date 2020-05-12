@@ -158,52 +158,46 @@ public class EditActivity extends AppCompatActivity {
         Button saveButton = findViewById(R.id.save_button);
 
         if (cancelButton != null) {
-            cancelButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(EditActivity.this, R.string.toast_not_saved, Toast.LENGTH_SHORT).show();
-                    finish();
-                }
+            cancelButton.setOnClickListener(v -> {
+                Toast.makeText(EditActivity.this, R.string.toast_not_saved, Toast.LENGTH_SHORT).show();
+                finish();
             });
         }
 
         if (saveButton != null) {
-            saveButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    String currentText = inputEditText.getText().toString();
-                    Log.d(TAG, "onClick: " + currentText);
-                    SharedPreferences.Editor editor = prefs.edit();
-                    boolean modified = false;
+            saveButton.setOnClickListener(v -> {
+                String currentText = inputEditText.getText().toString();
+                Log.d(TAG, "onClick: " + currentText);
+                SharedPreferences.Editor editor = prefs.edit();
+                boolean modified = false;
 
-                    if (!currentText.isEmpty() && !widgetText.equals(currentText)) {
-                        editor.putString(widgetKey, currentText);
-                        modified = true;
-                    }
-
-                    int currentTextSize = textSizeSeekBar.getProgress();
-                    if (currentTextSize != fontSize) {
-                        editor.putInt(fontSizeKey, currentTextSize);
-                        modified = true;
-                    }
-
-                    int currentTextColor = previewTextView.getCurrentTextColor();
-                    if (currentTextColor != textColor) {
-                        editor.putInt(textColorKey, currentTextColor);
-                        modified = true;
-                    }
-
-                    Context context = EditActivity.this;
-                    if (modified) {
-                        editor.apply();
-                        updateMyWidgets(context);
-                        Toast.makeText(context, R.string.toast_saved, Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(context, R.string.toast_not_saved, Toast.LENGTH_SHORT).show();
-                    }
-
-                    finish();
+                if (!currentText.isEmpty() && !widgetText.equals(currentText)) {
+                    editor.putString(widgetKey, currentText);
+                    modified = true;
                 }
+
+                int currentTextSize = textSizeSeekBar.getProgress();
+                if (currentTextSize != fontSize) {
+                    editor.putInt(fontSizeKey, currentTextSize);
+                    modified = true;
+                }
+
+                int currentTextColor = previewTextView.getCurrentTextColor();
+                if (currentTextColor != textColor) {
+                    editor.putInt(textColorKey, currentTextColor);
+                    modified = true;
+                }
+
+                Context context = EditActivity.this;
+                if (modified) {
+                    editor.apply();
+                    updateMyWidgets(context);
+                    Toast.makeText(context, R.string.toast_saved, Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(context, R.string.toast_not_saved, Toast.LENGTH_SHORT).show();
+                }
+
+                finish();
             });
         }
     }
