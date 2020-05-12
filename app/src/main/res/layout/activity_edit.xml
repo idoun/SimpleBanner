@@ -92,6 +92,25 @@
                 android:paddingLeft="@dimen/activity_horizontal_margin"
                 android:paddingRight="@dimen/activity_horizontal_margin"/>
 
+            <TextView
+                android:id="@+id/text_color_picker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:labelFor="@+id/selected_color"
+                android:text="@string/select_text_color"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin" />
+
+            <View
+                android:id="@+id/selected_color"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@android:color/white"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="20dp"
+                android:padding="5dp" />
+
         </LinearLayout>
     </ScrollView>
 

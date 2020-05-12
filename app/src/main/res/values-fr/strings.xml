@@ -10,4 +10,5 @@
     <string name="toast_font_size_min">La taille est trop petite.</string>
     <string name="toast_not_saved">Rien à sauver.</string>
     <string name="toast_saved">Enregistré.</string>
+    <string name="select_text_color">Sélectionnez la couleur du texte</string>
 </resources>

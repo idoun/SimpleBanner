@@ -9,4 +9,5 @@
     <string name="toast_saved">Saved.</string>
     <string name="toast_not_saved">Nothing to save.</string>
     <string name="label_preview">Preview</string>
+    <string name="select_text_color">Select Text Color</string>
 </resources>

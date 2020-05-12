@@ -19,6 +19,7 @@ package net.idoun.simplebanner;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.Editable;
@@ -35,6 +36,7 @@ import android.widget.Toast;
 import java.util.Locale;
 
 import androidx.appcompat.app.AppCompatActivity;
+import petrov.kristiyan.colorpicker.ColorPicker;
 
 /**
  * User can change the options of each banner widget in this Activity. Entering point is the widget
@@ -48,6 +50,7 @@ public class EditActivity extends AppCompatActivity {
 
     public static final String PREF_USER_TEXT = "USER_TEXT_";
     public static final String PREF_USER_TEXT_SIZE = "USER_TEXT_SIZE_";
+    public static final String PREF_USER_TEXT_COLOR = "USER_TEXT_COLOR_";
 
     public static final int DEFAULT_FONT_SIZE = 20;
     public static final int MIN_FONT_SIZE = 10;
@@ -57,19 +60,22 @@ public class EditActivity extends AppCompatActivity {
     private EditText inputEditText;
     private SeekBar textSizeSeekBar;
     private TextView textSizeTextView;
+    private View selectedColorView;
 
     private SharedPreferences prefs;
 
     private String widgetText = "";
     private int fontSize;
+    private int textColor = Color.WHITE; // default
 
     /**
      * To prevent accumulating multiple toast.
      */
     private long lastToastDisplayedTime;
 
-    private String fontSizeKey;
     private String widgetKey;
+    private String fontSizeKey;
+    private String textColorKey;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,10 +86,12 @@ public class EditActivity extends AppCompatActivity {
         inputEditText = findViewById(R.id.edit_input);
         textSizeSeekBar = findViewById(R.id.text_size_bar);
         textSizeTextView = findViewById(R.id.display_text_size);
+        selectedColorView = findViewById(R.id.selected_color);
 
         int appWidgetId = getIntent().getIntExtra(EXTRA_WIDGET_ID, -1);
         widgetKey = PREF_USER_TEXT + appWidgetId;
         fontSizeKey = PREF_USER_TEXT_SIZE + appWidgetId;
+        textColorKey = PREF_USER_TEXT_COLOR + appWidgetId;
 
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
         if (prefs.contains(widgetKey)) {
@@ -112,6 +120,34 @@ public class EditActivity extends AppCompatActivity {
         initBottomButtonArea();
 
         initFontSizeController();
+        if (prefs.contains(textColorKey)) {
+            textColor = prefs.getInt(textColorKey, Color.WHITE);
+            previewTextView.setTextColor(textColor);
+            selectedColorView.setBackgroundColor(textColor);
+        }
+        selectedColorView.setOnClickListener(this::showColorPicker);
+    }
+
+    private void showColorPicker(View v) {
+        ColorPicker colorPicker = new ColorPicker(this);
+        colorPicker.setOnFastChooseColorListener(new ColorPicker.OnFastChooseColorListener() {
+            @Override
+            public void setOnFastChooseColorListener(int position, int color) {
+                Log.d(TAG, "setOnFastChooseColorListener: " + position + ", color:" + color);
+                // display color
+                selectedColorView.setBackgroundColor(color);
+                previewTextView.setTextColor(color);
+            }
+
+            @Override
+            public void onCancel() {
+            }
+        })
+                .setColors(R.array.color_picker)
+                .setDefaultColorButton(textColor)
+                .setTitle(getString(R.string.select_text_color))
+                .setColumns(5)
+                .show();
     }
 
     /**
@@ -148,6 +184,12 @@ public class EditActivity extends AppCompatActivity {
                     int currentTextSize = textSizeSeekBar.getProgress();
                     if (currentTextSize != fontSize) {
                         editor.putInt(fontSizeKey, currentTextSize);
+                        modified = true;
+                    }
+
+                    int currentTextColor = previewTextView.getCurrentTextColor();
+                    if (currentTextColor != textColor) {
+                        editor.putInt(textColorKey, currentTextColor);
                         modified = true;
                     }
 

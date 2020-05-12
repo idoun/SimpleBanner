@@ -9,4 +9,5 @@
     <string name="toast_saved">それが保存されました。</string>
     <string name="toast_not_saved">何も保存しませんします。</string>
     <string name="label_preview">プレビュー</string>
+    <string name="select_text_color">テキストの色を選択</string>
 </resources>

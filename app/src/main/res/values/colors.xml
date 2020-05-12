@@ -4,4 +4,23 @@
     <color name="colorPrimaryDark">#455a64</color>
     <color name="colorAccent">#b71c1c</color>
     <color name="default_bg">#78000000</color>
+    <array name="color_picker">
+        <item>#ffffff</item>
+        <item>#000000</item>
+        <item>#FB8D8D</item>
+        <item>#CF0505</item>
+        <item>#630202</item>
+
+        <item>#A07FDA</item>
+        <item>#673AB7</item>
+        <item>#3F51B5</item>
+        <item>#02199A</item>
+        <item>#128817</item>
+
+        <item>#A6DD67</item>
+        <item>#CDB467</item>
+        <item>#FFEB3B</item>
+        <item>#FF8058</item>
+        <item>#FFC720</item>
+    </array>
 </resources>

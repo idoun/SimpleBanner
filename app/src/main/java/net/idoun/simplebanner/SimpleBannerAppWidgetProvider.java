@@ -23,6 +23,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.preference.PreferenceManager;
 import android.util.TypedValue;
 import android.widget.RemoteViews;
@@ -71,6 +72,13 @@ public class SimpleBannerAppWidgetProvider extends AppWidgetProvider {
                 int textSize = prefs.getInt(fontSizeKey, EditActivity.DEFAULT_FONT_SIZE);
 
                 views.setTextViewTextSize(R.id.text, TypedValue.COMPLEX_UNIT_SP, textSize);
+            }
+
+            String textColorKey = EditActivity.PREF_USER_TEXT_COLOR + appWidgetId;
+            if (prefs.contains(textColorKey)) {
+                int textColor = prefs.getInt(textColorKey, Color.WHITE);
+
+                views.setTextColor(R.id.text, textColor);
             }
 
             appWidgetManager.updateAppWidget(appWidgetId, views);

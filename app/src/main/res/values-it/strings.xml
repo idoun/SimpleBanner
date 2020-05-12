@@ -9,4 +9,5 @@
     <string name="toast_saved">Salvata.</string>
     <string name="toast_not_saved">Niente da salvare.</string>
     <string name="label_preview">Anteprima</string>
+    <string name="select_text_color">Seleziona colore del testo</string>
 </resources>
