@@ -144,7 +144,7 @@ public class EditActivity extends AppCompatActivity {
             }
         })
                 .setColors(R.array.color_picker)
-                .setDefaultColorButton(textColor)
+                .setDefaultColorButton(previewTextView.getCurrentTextColor())
                 .setTitle(getString(R.string.select_text_color))
                 .setColumns(5)
                 .show();
